@@ -96,6 +96,6 @@ scenes = api.search(
 print('{} scenes found.'.format(len(scenes)))
 
 for scene in scenes:
-    print('Scene ID:', scene['displayId'], ',Date:', scene['acquisitionDate'])
+    print('Scene ID:', scene['display_id'], ',Date:', scene['acquisitionDate'])
 
 api.logout()

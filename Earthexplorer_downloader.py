@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import landsatxplore.api
 from landsatxplore.earthexplorer import EarthExplorer
+import traceback
 
 #PySimpleGUI theme
 sg.theme('Dark')
@@ -79,7 +80,7 @@ while True:
             months=None)
         window['-SCENES-'].update('{} scenes found.'.format(len(scenes)))
         for scene in scenes:
-            names.append(scene['displayId'])
+            names.append(scene['display_id'])
         window['-LIST-'].update(names)
         recording = True
 #reset button event
@@ -94,12 +95,12 @@ while True:
         x = values['-LIST-']
         username = values['-USER-']
         password = values['-PW-']
+        ## Something wrong with EElandsatxplore --help
         ee = EarthExplorer(username, password)
-
         #Download Progress Bar
         progress = 0
         step = 1
-        download = ee.download(scene_id=x[0], output_dir=values['-SAVE_TXT-'])
+        download = ee.download(x[0], output_dir=values['-SAVE_TXT-'])
         window['-BAR-'].update_bar(download)
         download += step
         ee.logout()
